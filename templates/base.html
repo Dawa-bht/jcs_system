@@ -1,0 +1,135 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        School management system
+    </title>
+        <link rel="shortcut icon" href="{% static 'images/jcs.png' %}"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}" style="font-size:25px; font-weight: bold">
+                    <img src="{% static 'images/jcs.png' %}" width="65" height="68" alt="">
+                    &nbsp; SMS || JCS         
+                </a>
+            </div>       
+        </nav>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" style="font-size:20px;" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Student
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'students:twelve' %}">XII</a>
+                            <a class="dropdown-item" href="{% url 'students:eleven' %}">XI</a>
+                            <a class="dropdown-item" href="{% url 'students:ten' %}">X</a>
+                            <a class="dropdown-item" href="{% url 'students:nine' %}">IX</a>
+                            <a class="dropdown-item" href="{% url 'students:eight' %}">VIII</a>
+                            <a class="dropdown-item" href="{% url 'students:seven' %}">VII</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Staff
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'staff:adm' %}">Administration</a>
+                                <a class="dropdown-item" href="{% url 'staff:teacher' %}">Teaching Staff</a>
+                                <a class="dropdown-item" href="{% url 'staff:support_staff' %}">Supporting Staff</a>
+                                <a class="dropdown-item" href="{% url 'staff:non_teacher' %}">Non Teaching Staff</a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    </ul>
+                </div>              
+                {% if user.is_authenticated %}
+                        <button type = 'Submit' class="btn btn-light btn-sm">logged in as {{user.username}}</button>&nbsp;
+                        <form action = "{% url 'logoutuser' %}" method = 'POST' class="form-inline my-2 my-lg-0">
+                            {% csrf_token %}
+                            <button type = 'Submit' class="btn btn-success btn-sm" role="button" aria-pressed="true">Logout</button>
+                        </form>
+                    {% else %}
+                        <button 
+                            type="button"
+                            class="btn btn-success btn-sm active" 
+                            data-toggle="modal"
+                            data-target="#login">
+                            Admin Login
+                            </button>
+                    {% endif %}
+            </div>
+        </nav>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        {% block content %}
+
+        {% endblock %}
+        <div class="card-body  bg-primary" >
+            <center><h5 class="card-title">Developed by Dawa Penjor || Teacher || JCS</h5></center>
+        </div>  
+        <!-- Modal -->
+        <div
+            class="modal fade"
+            id="login"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Admin Login</h4>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'loginuser' %}">
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                            {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" class="form-control" id="username">
+                                </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control" id="password">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

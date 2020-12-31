@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <h2 style="font-family: Helvetica;">Add Disciplinary Issue</h2>
+            <hr>
+            <a href="{% url 'students:disciplinaryissue' %}" class="btn btn-danger">Add New</a> 
+        </div>
+    </div>
+</br>
+<div class="row justify-content-center mt-6">
+    <div class="col-md-6">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}     
+        <form method="POST" class="p-3 mb-2 bg-light text-dark">
+            <fieldset class="border p-2">
+                <legend class="w-auto" class="font-weight-bold"></legend>
+                {% csrf_token %}
+                <div class="col">
+                    <label for="Student" class="font-weight-bold">Student: </label>
+                    {{form.Student}}
+                </div>
+                </br>
+                <div class="col">
+                    <label for="Violation_detail" class="font-weight-bold">Violation Detail: </label>
+                    {{form.Violation_detail}}
+                </div>
+                </br>
+                <div class="col">
+                    <label for="Warning_decision" class="font-weight-bold">Warning Decision: </label>
+                    {{form.Warning_decision}}
+                </div>
+                </br>
+                <div class="col">
+                    <label for="Violation_date" class="font-weight-bold">Violation Date(mm/dd/yyyy): </label>
+                    {{form.Violation_date}}
+                </div>
+                </br>
+                <div class="col">
+                    <label for="Approved_by" class="font-weight-bold">Approved By: </label>
+                    {{form.Approved_by}}
+                </div>
+                </br>
+            </fieldset>
+                </br>
+                <button type = 'Submit' class="btn btn-primary">Add</button>
+            </br>
+        </form> 
+        </br> 
+    </div>
+</div>
+</div>
+{% endblock %}
+</html>

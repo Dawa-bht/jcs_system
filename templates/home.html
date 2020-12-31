@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+{% block content %}
+<head>
+    <style>
+    .bg {
+    background-image: url({% static 'images/school.jpg' %});
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    background-position:center;
+    }
+    </style>
+</head>
+<body>
+    <div class="container-fluid bg">         
+        <div class="card text-center bg-transparent">
+            <div class="card-body"><br><br><br><br><br><br>
+                <h1 class="card-title text-white">Jampeling Central School</h1>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-md-8">
+                        <h5 class="card-text text-light">"Our school is proud of the traditions, high expectations, inviting culture and climate that makes it a good place to learn and grow."</h5>
+                    </div>
+                </div>
+                <br><br> <br>
+                    <a href="{% url 'staff:add_staff' %}" class="btn btn-success">Enroll Staff</a> <br> <br>
+                    <a href="{% url 'students:add_std' %}" class="btn btn-success">Enroll Student</a> <br><br>
+                    <a href="{% url 'students:disciplinaryissue' %}" class="btn btn-warning">Add Disciplinary Issue</a>  <br>   <br>            
+                    <a href="{% url 'students:charactercertificate' %}" class="btn btn-success">Add Character Certificate</a> 
+                <br><br> <br><br><br><br>
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="container-fluid">
+        <hr class>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <center><h3 style="font-family: Helvetica;">Total Number of Students</h3></center>
+                <hr>
+                <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class = "table-success">
+                            <th scope="col">Class</th>
+                            <th scope="col">Male</th>
+                            <th scope="col">Female</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="table-info">Seven</th>
+                        <td>{{male_seven.count}}</td>
+                        <td>{{female_seven.count}}</td>
+                        <td>{{total_seven.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'students:seven'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Eight</th>
+                        <td>{{male_eight.count}}</td>
+                        <td>{{female_eight.count}}</td>
+                        <td>{{total_eight.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'students:eight'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Nine</th>
+                        <td>{{male_nine.count}}</td>
+                        <td>{{female_nine.count}}</td>
+                        <td>{{total_nine.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'students:nine'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Ten</th>
+                        <td>{{male_ten.count}}</td>
+                        <td>{{female_ten.count}}</td>
+                        <td>{{total_ten.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'students:ten'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Eleven</th>
+                        <td>{{male_eleven.count}}</td>
+                        <td>{{female_eleven.count}}</td>
+                        <td>{{total_eleven.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'students:eleven' %}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Twelve</th>
+                        <td>{{male_twelve.count}}</td>
+                        <td>{{female_twelve.count}}</td>
+                        <td>{{total_twelve.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'students:twelve'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="table-warning">
+                        <th scope="row">Total Number of Students</th>
+                        <td><strong>{{male.count}}</strong></td>
+                        <td><strong>{{female.count}}</strong></td>
+                        <td colspan="2"><strong><center>{{total.count}}</center></strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><a href="{% url 'students:export_csv' %}" class="btn btn-dark">Download Student Data</a> </td> 
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="col">
+                <center><h3 style="font-family: Helvetica;">Total Number of Staffs</h3></center>
+                <hr>
+                <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class = "table-success">
+                            <th scope="col">Category</th>
+                            <th scope="col">Male</th>
+                            <th scope="col">Female</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="table-info">Administration</th>
+                        <td>{{male_adm.count}}</td>
+                        <td>{{female_adm.count}}</td>
+                        <td>{{total_adm.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'staff:adm'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Teaching Staff</th>
+                        <td>{{male_teacher.count}}</td>
+                        <td>{{female_teacher.count}}</td>
+                        <td>{{total_teacher.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'staff:teacher'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Supporting Staff</th>
+                        <td>{{male_support_staff.count}}</td>
+                        <td>{{female_support_staff.count}}</td>
+                        <td>{{total_support_staff.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'staff:support_staff' %}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table-info">Non Teaching Staff</th>
+                        <td>{{male_non_teacher.count}}</td>
+                        <td>{{female_non_teacher.count}}</td>
+                        <td>{{total_non_teacher.count}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-sm">
+                                <a href="{% url 'staff:non_teacher'%}">View</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="table-warning">
+                        <th scope="row">Total Number of Staff</th>
+                        <td><strong>{{male_staff.count}}</strong></td>
+                        <td><strong>{{female_staff.count}}</strong></td>
+                        <td colspan="2"><strong><center>{{total_staff.count}}</center></strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><a href="{% url 'staff:export_csv' %}" class="btn btn-dark">Download Staff Data</a></td> 
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+    </div>
+</div>
+<div class="container-fluid bg-dark text-light">
+        <center>
+        <div class="row justify-content-center mt-0">
+            <div class="col-md-5">
+            <br>
+                <h4 style="font-family: Helvetica;">Contact Us</h4>
+                <hr class="bg-white">
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-5">
+                <address>
+                    Jampeling Central School
+                    <br>
+                    Kanglung, Tashigang<br>
+                    Bhutan<br>
+                    <a href="tel:+9754535167">
+                    +9754535167<br><br>
+                    </a>
+                    <button type="button" class="btn btn-light">
+                        <a href="https://www.facebook.com/JCSkanglung/">
+                            <img src="https://img.icons8.com/fluent-systems-regular/30/000000/facebook-new.png"/>
+                        </a>
+                    </button>
+                    <button type="button" class="btn btn-light">
+                        <a href="mailto:tg.jampelingcs@education.gov.bt">
+                            <img src="https://img.icons8.com/fluent-systems-regular/30/000000/send-mass-email.png"/>
+                        </a>
+                    </button>
+                </address>
+            </div>
+        </div>
+        </center>
+    </div>
+{% endblock content %}
+</body>
+</html>

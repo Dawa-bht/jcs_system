@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+    {% block content %}
+    <P>
+    <div class="container">
+    <div class="table-responsive">
+        <table class="table bg-dark text-white">
+        <tbody>
+            <tr >
+            <td>
+            <p><strong>Employee ID: </strong>{{staff.Employee_ID}} </p>
+            <p><strong>Category: </strong>{{staff.category |capfirst}}</p>
+            <p><strong>Gender: </strong>{{staff.gender |capfirst}}</p>
+            <p><strong>Date of birth: </strong>{{staff.date_of_birth}}</p>
+            <p><strong>CID Number: </strong>{{staff.CID}}</p>
+            <p><strong>Position Level: </strong>{{staff.position_level}}</p>
+            <p><strong>Grade: </strong>{{staff.grade}}</p>
+            <p><strong>Nationality: </strong>{{staff.nationality |capfirst}}</p>
+            <p><strong>Subject: </strong>{{staff.subject |capfirst}}</p>
+            </td>
+            <td><center><h4>{{staff.position_title|capfirst}} {{staff.name |capfirst}}</h4>
+            <a href="{{staff.profile_pic.url}}"><img src="{{staff.profile_pic.url}}" width="300" height="300"></a>
+            </center>
+            </td>
+            <td>
+            <p><strong>Employment Type: </strong>{{staff.Employment_type|capfirst}}</p>
+            <p><strong>Email: <a href="mailto:{{staff.email}}"></strong>{{staff.email}}</a></p>
+            <p><strong>Mobile Number: </strong>{{staff.contact_number}}</p>
+            <p><strong>Qualification: </strong>{{staff.qualification |capfirst}}</p>
+            <p><strong>Appointment Date: </strong>{{staff.appointment_date}}</p>
+            <p><strong>Joining Date: </strong>{{staff.joining_date_of_present_school}}</p>
+            <p><strong>Transfered From: </strong>{{staff.transfered_from|capfirst}}</p>
+            <p><strong>Permanent Address: </strong>{{staff.permanent_address |capfirst}}</p>
+            </td>
+        </tr>
+        </tbody>
+    </table> 
+    </div>
+    </br>
+    </div>
+{% endblock content %}
